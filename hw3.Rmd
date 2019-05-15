@@ -1,0 +1,111 @@
+---
+title: "hw3"
+author: "Gage Clawson, Ben Edwards"
+date: "5/15/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+
+```{r}
+# read in data
+hw3_raw <- read_csv("HW3Data.csv")
+```
+
+
+1. Create a linear probability model that predicts a respondent’s probability of voting ‘yes’ on the ballot based on their age, income, NEP score, the risk reduction offered by the program, and the cost of the program to that respondent. Show the model and interpret the regression coefficients.
+
+```{r}
+p_yes <- glm(vote ~ age + income + NEP + risk + bid, family = "binomial", data = hw3_raw)
+summary(p_yes)
+```
+
+Call:
+glm(formula = vote ~ age + income + NEP + risk + bid, family = "binomial", 
+    data = hw3_raw)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.5242  -0.9829   0.5998   0.7982   1.9002  
+
+Coefficients:
+                   Estimate Std. Error z value Pr(>|z|)    
+(Intercept)       -2.088292   0.665981  -3.136  0.00171 ** 
+agetofifty         0.062771   0.355469   0.177  0.85983    
+agetoforty        -0.127045   0.336290  -0.378  0.70559    
+agetosixty        -0.107886   0.330639  -0.326  0.74420    
+agetothirty        0.092936   0.318546   0.292  0.77048    
+incomeone_percent  0.059366   0.331487   0.179  0.85787    
+incomepoor         0.040298   0.359092   0.112  0.91065    
+incomerich         0.060219   0.376718   0.160  0.87300    
+incomevery_rich    0.277879   0.380863   0.730  0.46563    
+NEP                0.083213   0.012273   6.780  1.2e-11 ***
+risk               0.004169   0.004631   0.900  0.36802    
+bid               -0.005865   0.003639  -1.612  0.10700    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 598.53  on 499  degrees of freedom
+Residual deviance: 537.16  on 488  degrees of freedom
+AIC: 561.16
+
+Number of Fisher Scoring iterations: 4
+
+The odds that compared to those over the age of sixty, those that are forty and those that are sixty are less likely to vote yes, while those that are fifty, and those that are thirty are more likely to vote yes. Compared to the middle class income segment, all income classes are more likely to vote yes to the policy, with the very rich having the highest likelihood of voting yes. The higher a person's NEP is, the more likely they will vote yes. The higher the risk, the more likely a person will vote yes. The higher the bid, the less likely people will vote yes. 
+
+2. Based on this regression, what can you say about the value of a single prevented whale death? (Hint: Think about how risk reduction for all whales translates into the number of whale deaths avoided)
+
+```{r}
+
+```
+
+3. Pick three arbitrary respondents. For each of those respondents, estimate their WTP for a VSR program offering 60% risk reduction. 
+
+```{r}
+
+```
+
+4. Now repeat this process and estimate the mean WTP for a VSR program offering 60% risk reduction among Santa Barbara County households.
+
+```{r}
+
+```
+
+5. If there are 150,000 households in Santa Barbara County, estimate the total benefit of a VSR program to these households.
+
+```{r}
+
+```
+
+6. Based only on these benefits, do the benefits of the VSR program outweigh the costs?
+
+```{r}
+
+```
+
+When a container ship reduces its speed, it not only reduces the risk of colliding with a whale but also emits less carbon per distance traveled. For this reason, the WhaleStrikes Group Project recommended enrolling container ships in voluntary carbon trading markets to mitigate fatal whale strikes. Assume that for any ship transiting the Santa Barbara Channel, a speed reduction (that results in a 60% risk reduction) will cost the shipper $1,000, but will result in 20 fewer tons of CO2 emitted per transit.
+
+7. Suppose the price of a carbon credit is $Z per ton, at what price Z* will the shipping industry decide to adopt the VSR for purely self-interested reasons? (Note: if ships voluntarily reduce speed, then the 7 million cost (noted above) of implementing the VSR would be avoided)
+
+```{r}
+
+```
+
+
+8. Now suppose the carbon credit price is exactly Z*, so all ships voluntarily reduce speed to achieve the 60% risk reduction. Approximately how many whales would be saved by this? What would be the social value of allowing ships to enter the carbon trading market?
+
+```{r}
+
+```
+
+
+
+ 
+
+
