@@ -57,18 +57,21 @@ AIC: 561.16
 
 Number of Fisher Scoring iterations: 4
 
-The odds that compared to those over the age of sixty, those that are forty and those that are sixty are less likely to vote yes, while those that are fifty, and those that are thirty are more likely to vote yes. Compared to the middle class income segment, all income classes are more likely to vote yes to the policy, with the very rich having the highest likelihood of voting yes. The higher a person's NEP is, the more likely they will vote yes. The higher the risk, the more likely a person will vote yes. The higher the bid, the less likely people will vote yes. 
+- The odds that compared to those over the age of sixty, those that are forty and those that are sixty are less likely to vote yes, while those that are fifty, and those that are thirty are more likely to vote yes. Compared to the middle class income segment, all income classes are more likely to vote yes to the policy, with the very rich having the highest likelihood of voting yes. The higher a person's NEP is, the more likely they will vote yes. The higher the risk, the more likely a person will vote yes. The higher the bid, the less likely people will vote yes. 
 
 2. Based on this regression, what can you say about the value of a single prevented whale death? (Hint: Think about how risk reduction for all whales translates into the number of whale deaths avoided)
 
-```{r}
-
-```
+- One increase in value of risk reduction corresponds to a .0041 increase in the probability that a person will say yes to the ballot. 
 
 3. Pick three arbitrary respondents. For each of those respondents, estimate their WTP for a VSR program offering 60% risk reduction. 
 
 ```{r}
+lm_cost <- lm(bid ~ age + income + NEP + risk + vote, data = hw3_raw)
+summary(lm_cost)
 
+q3 <- data.frame(risk = 60, vote = 1, NEP = 32, income = "poor", age = "tothirty") # Make a new data frame
+q3_cost <- predict(lm_cost, newdata = q3, type = "response") # Find probability of survival
+q3_cost
 ```
 
 4. Now repeat this process and estimate the mean WTP for a VSR program offering 60% risk reduction among Santa Barbara County households.
