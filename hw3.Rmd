@@ -50,7 +50,7 @@ bid <- p_yes$coefficients[12]
 single_whale_risk_red <- 4
 
 #use first person in dataset to do calculation 
-(risk*hw3_raw$risk[1] - (risk*hw3_raw$risk[1] + (single_whale_risk_red*risk)))*(1/bid)
+singlewhale <- (risk*hw3_raw$risk[1] - (risk*hw3_raw$risk[1] + (single_whale_risk_red*risk)))*(1/bid)
 #The value of a single prevent whale death is $2.7834. 
 
 ```
@@ -62,7 +62,7 @@ $(0.001*bid) = 0.1197 + (-0.714*voteyes) + (0.0204*agetothirty) + (-0.0201*ageto
 
 ```{r}
 mean_pyes <- predict(p_yes, newdata = hw3_raw, type = "response")
-mean_pyes <- sum(q3)/500 #mean probability of yes is .714 
+mean_pyes <- sum(mean_pyes)/500 #mean probability of yes is .714 
 
 #save coefficients by solving for bid 
 #agetothirty_bid <- agetothirty/-bid
@@ -181,6 +181,9 @@ The shipping industry will decide to adopt the VSR at $50 per ton of CO2.
 #4/1 = 60/x
 # x = 15
 
+
+nsv <- ((-1000 + 1000) + all_sb) - (singlewhale*150000*15)
+#$6,112,760.69417361 
 ```
 
 a. A risk reduction of 4% saves one whale, which means a risk reduction of 60% will save 15 whales. 
