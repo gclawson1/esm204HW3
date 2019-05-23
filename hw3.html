@@ -260,15 +260,12 @@ bid &lt;- p_yes$coefficients[12]
 #4 = x/1
 single_whale_risk_red &lt;- 4
 
-#use first person in dataset to do calculation 
-(risk*hw3_raw$risk[1] - (risk*hw3_raw$risk[1] + (single_whale_risk_red*risk)))*(1/bid)</code></pre>
-<pre><code>##   risk 
-## 2.7834</code></pre>
-<pre class="r"><code>#The value of a single prevent whale death is $2.7834. </code></pre>
+singlewhale &lt;-  (single_whale_risk_red*risk)*(1/-bid)
+#The value of a single prevented whale death is $2.7834. </code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Pick three arbitrary respondents. For each of those respondents, estimate their WTP for a VSR program offering 60% risk reduction.</li>
 </ol>
-<p><span class="math inline">\((0.001*bid) = 0.1197 + (-0.714*voteyes) + (0.0204*agetothirty) + (-0.0201*agetoforty) + (0.0099*agetofifty) + (-0.0162*agetosixty) + (0.0027*poor) + (0.0075*rich) + (0.0468*veryrich) + (0.0088*onepercent) + (0.0158*NEP) + (0.0007*risk)\)</span></p>
+<p><span class="math inline">\(bid = (0.1197 + (-0.714*voteyes) + (0.0204*agetothirty) + (-0.0201*agetoforty) + (0.0099*agetofifty) + (-0.0162*agetosixty) + (0.0027*poor) + (0.0075*rich) + (0.0468*veryrich) + (0.0088*onepercent) + (0.0158*NEP) + (0.0007*risk))/0.0011\)</span></p>
 <pre class="r"><code>mean_pyes &lt;- predict(p_yes, newdata = hw3_raw, type = &quot;response&quot;)
 mean_pyes &lt;- sum(mean_pyes)/500 #mean probability of yes is .714 
 
@@ -371,7 +368,11 @@ z &lt;- 1000/20
 <li>Now suppose the carbon credit price is exactly Z*, so all ships voluntarily reduce speed to achieve the 60% risk reduction. Approximately how many whales would be saved by this? What would be the social value of allowing ships to enter the carbon trading market?</li>
 </ol>
 <pre class="r"><code>#4/1 = 60/x
-# x = 15</code></pre>
+# x = 15
+
+
+nsv &lt;- ((-1000 + 1000) + all_sb) - (singlewhale*150000*15)
+#$6,112,760.69417361 </code></pre>
 <ol style="list-style-type: lower-alpha">
 <li>A risk reduction of 4% saves one whale, which means a risk reduction of 60% will save 15 whales.</li>
 <li></li>

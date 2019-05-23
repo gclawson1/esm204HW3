@@ -49,16 +49,15 @@ bid <- p_yes$coefficients[12]
 #4 = x/1
 single_whale_risk_red <- 4
 
-#use first person in dataset to do calculation 
-singlewhale <- (risk*hw3_raw$risk[1] - (risk*hw3_raw$risk[1] + (single_whale_risk_red*risk)))*(1/bid)
-#The value of a single prevent whale death is $2.7834. 
+singlewhale <-  (single_whale_risk_red*risk)*(1/-bid)
+#The value of a single prevented whale death is $2.7834. 
 
 ```
 
 
 3. Pick three arbitrary respondents. For each of those respondents, estimate their WTP for a VSR program offering 60% risk reduction. 
 
-$(0.001*bid) = 0.1197 + (-0.714*voteyes) + (0.0204*agetothirty) + (-0.0201*agetoforty) + (0.0099*agetofifty) + (-0.0162*agetosixty) + (0.0027*poor) + (0.0075*rich) + (0.0468*veryrich) + (0.0088*onepercent) + (0.0158*NEP) + (0.0007*risk)$
+$bid = (0.1197 + (-0.714*voteyes) + (0.0204*agetothirty) + (-0.0201*agetoforty) + (0.0099*agetofifty) + (-0.0162*agetosixty) + (0.0027*poor) + (0.0075*rich) + (0.0468*veryrich) + (0.0088*onepercent) + (0.0158*NEP) + (0.0007*risk))/0.0011$
 
 ```{r}
 mean_pyes <- predict(p_yes, newdata = hw3_raw, type = "response")
@@ -182,12 +181,12 @@ The shipping industry will decide to adopt the VSR at $50 per ton of CO2.
 # x = 15
 
 
-nsv <- ((-1000 + 1000) + all_sb) - (singlewhale*150000*15)
-#$6,112,760.69417361 
+nsv <- 150000*bid_mean_sb 
+
 ```
 
 a. A risk reduction of 4% saves one whale, which means a risk reduction of 60% will save 15 whales. 
-b. 
+b. The nsv is equal to the total benefit to SB residents, $12,375,410, since the carbon credits offset any costs to the publc. 
 
 
  
